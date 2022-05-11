@@ -1,0 +1,7 @@
+terraform.tfvars.json
+.terraform/
+terraform.tfstate*
+.terraform*
+cluster.yaml
+config.yaml
+.envrc
