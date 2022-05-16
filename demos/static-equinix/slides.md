@@ -1,7 +1,7 @@
 ---
 title: liquid-metal
 author: Weaveworks
-date: 2022-02-03
+date: 2022-05-16
 styles:
   author:
     bg: default
@@ -17,12 +17,13 @@ styles:
 # Welcome to Liquid Metal
 
 ## In this demo...
-- Overview of Liquid Metal components running on Equinix
+- Overview of Liquid Metal components
 - Creating a management CAPI cluster in a local kinD
 - Creating a workload Bare Metal cluster via CAPMVM (cluster api provider microvm)
+- Static, not dynamic, placement
 
-## Not in this demo...
-- Bootstrapping Liquid Metal hosts from scratch, that is another demo :)
+## Assumed knowledge
+- Cluster API (CAPI)
 
 ---
 
@@ -100,12 +101,8 @@ systemctl status containerd.service
 kind create cluster
 ```
 
-## `clusterctl`
+## CAPMVM
 
-- CLI tool to work with CAPI
-  - Easy UX
-- Initialise the management cluster with `clusterctl init`
-  - This will install CAPI controllers
 - Liquid Metal ships a custom CAPI infrastructure provider
   - Cluster API Provider MicroVM (capmvm)
   - Works with CAPI to create MicroVMs on our bare metal hosts
@@ -113,6 +110,7 @@ kind create cluster
 
 ### Configure `clusterctl`
 
+- `clusterctl` installs the CAPI controllers in the management cluster
 - Config file instructs `clusterctl` where to find the custom provider image and how to run it
 
 ```bash

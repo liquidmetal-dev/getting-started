@@ -46,7 +46,7 @@ variable "host_device_count" {
   type        = number
   default     = 2
   validation {
-    condition     = max(var.host_device_count) == 3
+    condition     = var.host_device_count <= 3
     error_message = "Too many hosts requested."
   }
 }

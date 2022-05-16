@@ -4,4 +4,4 @@ terraform.tfstate*
 .terraform*
 cluster.yaml
 config.yaml
-.envrc
+./.envrc
