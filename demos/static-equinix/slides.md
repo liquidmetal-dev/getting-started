@@ -1,7 +1,7 @@
 ---
 title: liquid-metal
-author: Weaveworks
-date: 2022-05-16
+author: weaveworks
+date: 2022-05-17
 styles:
   author:
     bg: default

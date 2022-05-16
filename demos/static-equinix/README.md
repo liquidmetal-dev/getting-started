@@ -45,7 +45,9 @@ There are a couple of things you will want to do ahead of time.
 
 In addition to this doc, you may want to read the "getting started" tutorial
 from the [`Bootstrapping Cluster API`](../../docs/capi.md#bootstrapping-cluster-api) section.
-You will basically just be following the tutorial along from there.
+You will basically just be following the tutorial along from there but, as said above,
+everything will be run/provided for you so there is no need to improvise unless you
+feel comfortable doing so.
 
 ### Deploying the Equinix hosts
 
@@ -54,6 +56,8 @@ Follow the [terraform docs](../../docs/intro.md#terraform-an-environment-on-equi
 Take note of the 2 host ips printed in the output.
 
 ### Tools to install
+
+These are all required.
 
 #### Locally
 
@@ -64,12 +68,14 @@ Kubernetes things:
 - [clusterctl](https://cluster-api.sigs.k8s.io/user/quick-start.html#install-clusterctl)
 
 > Note: there is a [handy gist](https://gist.github.com/Callisto13/617240630944c96730d5151ed308d29a)
-to install the above on Linux.
+to install the above on Linux (sudo needed).
 
 Demo things:
 - [`lookatme`](https://github.com/d0c-s4vage/lookatme)
 - [`tmux`](https://github.com/tmux/tmux)
+  - ([my tmux config](https://gist.github.com/Callisto13/b4cc217ca4f1c2f7f51405d62b941adb))
 - [`neovim`](https://neovim.io/) or [`vim`](https://www.vim.org/)
+  - ([my nvim config](https://github.com/warehouse-13/a-new-hope))
 
 #### On the Equinix hosts
 
@@ -85,14 +91,29 @@ You should create the management cluster:
 kind create cluster
 ```
 
-If CAPMVM is still a private repo, you also need to set up some auth access to the
-image etc. Follow the [`Authenticate` section](../../docs/capi.md#authenticate) of the docs.
-
 The demo will create and write to `~/.cluster-api/clusterctl.yaml`, so either delete
 that or make a backup somewhere.
 
 Check the value of `CAPMVM_VERSION` in `auto-script.sh` and make sure it is using
 one compatible with the flintlock running on your hosts.
+
+### Pre-heating the cache
+
+You'll want to run through everything first to get the mvm images on the hosts ahead of
+time. This makes it slightly faster for the demo.
+
+To reset after a pre-game:
+
+On your machine:
+```bash
+kubectl delete clusters.cluster.x-k8s.io mvm-test
+kind delete cluster --name <cluster name> # or just uninstall the CAPI controllers, this is just me being lazy
+```
+
+On each of the host machines:
+```bash
+rm -rf /var/lib/flintlock/vm/*
+```
 
 ## Running the demo
 
@@ -112,7 +133,7 @@ cd <PATH-TO-REPO>/getting-started/demos/static-equinix
 lookatme --live slides.md
 ```
 
-To go to the next slide press space or an arrow key.
+To go to the next slide press space or the right arrow key.
 
 You can scroll down the slides with arrows to reveal more text.
 
@@ -121,7 +142,6 @@ You can scroll down the slides with arrows to reveal more text.
 Start the command runner script:
 
 ```bash
-export GITHUB_TOKEN=<the token you used above>
 cd <PATH-TO-REPO>/getting-started/demos/static-equinix
 ./auto-script.sh
 ```
