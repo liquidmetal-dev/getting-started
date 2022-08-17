@@ -30,8 +30,8 @@ pe "clear"
 # slide 5
 pe "export CLUSTER_NAME=mvm-test"
 pe "export CONTROL_PLANE_MACHINE_COUNT=1"
-pe "export WORKER_MACHINE_COUNT=10"
-pe "export CONTROL_PLANE_VIP=192.168.1.25"
+pe "export WORKER_MACHINE_COUNT=5"
+pe "export CONTROL_PLANE_VIP=192.168.10.25"
 pe "clusterctl generate cluster -i microvm:$CAPMVM_VERSION -f cilium $CLUSTER_NAME > cluster.yaml"
 
 # slide 6

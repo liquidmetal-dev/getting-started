@@ -158,7 +158,7 @@ export WORKER_MACHINE_COUNT=5
   - Here a private address from my Equinix host's VLAN.
 
 ```bash
-export CONTROL_PLANE_VIP="192.168.1.25"
+export CONTROL_PLANE_VIP="192.168.10.25"
 ```
 
 - Use `clusterctl` to generate a manifest definition for the microvm cluster
@@ -189,7 +189,7 @@ metadata:
   namespace: default
 spec:
   controlPlaneEndpoint:
-    host: 192.168.1.25
+    host: 192.168.10.25
     port: 6443
   placement:
     staticPool:

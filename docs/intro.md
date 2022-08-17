@@ -65,7 +65,7 @@ The following will be provisioned:
 The following networking configuration will be applied:
 - All devices will be configured in a Hybrid Bonded mode
 - All devices will have a port connected to a VLAN
-- A DHCP server will assign MicroVM addresses from a private range of `192.168.1.0/25`
+- A DHCP server will assign MicroVM addresses from a private range of `192.168.10.0/25`
 - NAT and filter rules will forward egress traffic from the private interface to the default public one on the host
 - A Tailscale VPN subnet router will route traffic from local VPN-connected devices to MicroVMs
 

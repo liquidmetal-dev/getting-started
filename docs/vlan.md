@@ -37,11 +37,11 @@ ip link add link bond0 name bond0.<VLAN_ID> type vlan id <VLAN_ID>
 
 Add an address from **an internal address block of your choosing** to the
 VLAN **ensuring that you choose a different address within the range for each
-device**. For this I am using `192.168.1.0/25` as I don't need much for the
+device**. For this I am using `192.168.10.0/25` as I don't need much for the
 purposes of this demo.
 ```bash
 ip addr add <IP_ADDRESS> dev bond0.<VLAN_ID>
-# for example: ip addr add 192.168.1.2/25 dev bond0.1000
+# for example: ip addr add 192.168.10.2/25 dev bond0.1000
 ```
 
 Ensure the interface is up:

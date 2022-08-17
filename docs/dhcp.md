@@ -45,9 +45,9 @@ default-lease-time 600;
 max-lease-time 7200;
 authoritative;
 
-subnet 192.168.1.0 netmask 255.255.255.128 {
-  range 192.168.1.26 192.168.1.126;
-  option routers 192.168.1.2;
+subnet 192.168.10.0 netmask 255.255.255.128 {
+  range 192.168.10.26 192.168.10.126;
+  option routers 192.168.10.2;
   option domain-name-servers 147.75.207.207, 147.75.207.208;
 }
 EOF
@@ -150,7 +150,7 @@ Navigate to your Tailscale dashboard, and [create a new Auth key](https://login.
 Copy the key.
 
 Start the Tailscale service with both the auth key and the subnet we used earlier
-to create our VLAN, in my case this was `192.168.1.0/25`:
+to create our VLAN, in my case this was `192.168.10.0/25`:
 
 ```bash
 tailscale up --advertise-routes=<PRIVATE_VLAN_RANGE> --authkey <YOUR_AUTH_KEY>
