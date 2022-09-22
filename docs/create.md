@@ -10,11 +10,12 @@ and run: mdtoc -inplace docs/create.md
 -->
 
 <!-- toc -->
-- [Configuration](#configuration)
-- [Create](#create)
-- [Use your new cluster](#use-your-new-cluster)
-- [Delete](#delete)
-- [Troubleshooting](#troubleshooting)
+- [Creating Liquid Metal clusters](#creating-liquid-metal-clusters)
+  - [Configuration](#configuration)
+  - [Create](#create)
+  - [Use your new cluster](#use-your-new-cluster)
+  - [Delete](#delete)
+  - [Troubleshooting](#troubleshooting)
 <!-- /toc -->
 
 ## Configuration
@@ -27,8 +28,8 @@ export WORKER_MACHINE_COUNT=1
 ```
 
 Select an IP from your VLAN IP block range to use for the control plane address.
-(For example, I am using a `192.168.1.0/25` CIDR and have set aside `192.168.1.26`
-to `192.168.1.126` for my MicroVMs, so I can set `192.168.1.25` as my cluster
+(For example, I am using a `192.168.10.0/25` CIDR and have set aside `192.168.10.26`
+to `192.168.10.126` for my MicroVMs, so I can set `192.168.10.25` as my cluster
 endpoint address. This is a naive configuration for the purposes of this demonstration.):
 ```sh
 export CONTROL_PLANE_VIP=<ADDRESS>

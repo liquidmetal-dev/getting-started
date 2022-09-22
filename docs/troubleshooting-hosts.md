@@ -133,16 +133,16 @@ Example log output:
 [   14.038692] cloud-init[948]: ci-info: | dummy0 | False |              .               |        .        |   .    | 82:c9:95:a0:b6:a8 |
 [   14.039329] cloud-init[948]: ci-info: |  eth0  |  True |         169.254.0.1          |   255.255.0.0   | global | aa:ff:00:00:00:01 |
 [   14.039954] cloud-init[948]: ci-info: |  eth0  |  True |   fe80::a8ff:ff:fe00:1/64    |        .        |  link  | aa:ff:00:00:00:01 |
-[   14.040572] cloud-init[948]: ci-info: |  eth1  |  True |         192.168.1.92         | 255.255.255.128 | global | 72:bf:3d:dd:7b:f3 |
+[   14.040572] cloud-init[948]: ci-info: |  eth1  |  True |         192.168.10.92         | 255.255.255.128 | global | 72:bf:3d:dd:7b:f3 |
 [   14.041193] cloud-init[948]: ci-info: |  eth1  |  True | fe80::70bf:3dff:fedd:7bf3/64 |        .        |  link  | 72:bf:3d:dd:7b:f3 |
 [   14.041813] cloud-init[948]: ci-info: |   lo   |  True |          127.0.0.1           |    255.0.0.0    |  host  |         .         |
 [   14.042429] cloud-init[948]: ci-info: |   lo   |  True |           ::1/128            |        .        |  host  |         .         |
 [   14.043054] cloud-init[948]: ci-info: +--------+-------+------------------------------+-----------------+--------+-------------------+
 ```
 
-In this case my assigned IP is `192.168.1.92`.
+In this case my assigned IP is `192.168.10.92`.
 
-I can then use my private key to SSH: `ssh -i <private-key> root@192.168.1.92`.
+I can then use my private key to SSH: `ssh -i <private-key> root@192.168.10.92`.
 
 ## My microvm has no internet
 
@@ -157,7 +157,7 @@ If this does not work, check your network interfaces:
 ip a
 ```
 If you do not see the `bond0.1000@bond0` interface, or if it does not have a
-`192.168.1.x` address, go back to the [VLAN](vlan.md) section.
+`192.168.10.x` address, go back to the [VLAN](vlan.md) section.
 
 ## My microvm cannot resolve
 

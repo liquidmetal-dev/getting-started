@@ -51,6 +51,12 @@ variable "host_device_count" {
   }
 }
 
+variable "bm_device_count" {
+  description = "number of bm hosts to create"
+  type        = number
+  default     = 0
+}
+
 variable "metal_auth_token" {
   description = "Auth token"
   type        = string
@@ -115,7 +121,7 @@ resource "metal_device" "dhcp_nat" {
   hostname            = "dhcp-nat"
   plan                = var.server_type
   metro               = var.metro
-  operating_system    = "ubuntu_20_04"
+  operating_system    = "ubuntu_22_04"
   billing_cycle       = "hourly"
   user_data           = "#!/bin/bash\ncurl -s https://raw.githubusercontent.com/masters-of-cats/a-new-hope/main/install.sh | bash -s"
   project_ssh_key_ids = [metal_project_ssh_key.demo_key.id]
@@ -136,7 +142,7 @@ resource "metal_device" "host" {
   hostname            = "host-${count.index}"
   plan                = var.server_type
   metro               = var.metro
-  operating_system    = "ubuntu_20_04"
+  operating_system    = "ubuntu_22_04"
   billing_cycle       = "hourly"
   user_data           = "#!/bin/bash\ncurl -s https://raw.githubusercontent.com/masters-of-cats/a-new-hope/main/install.sh | bash -s"
   project_ssh_key_ids = [metal_project_ssh_key.demo_key.id]
@@ -147,6 +153,28 @@ resource "metal_device" "host" {
 resource "metal_port" "bond0_host" {
   count    = var.host_device_count
   port_id  = [for p in metal_device.host[count.index].ports : p.id if p.name == "bond0"][0]
+  layer2   = false
+  bonded   = true
+  vlan_ids = [metal_vlan.vlan.id]
+}
+
+# Create N devices to act as baremetal hosts
+resource "metal_device" "bmhost" {
+  count               = var.bm_device_count
+  hostname            = "bm-${count.index}"
+  plan                = var.server_type
+  metro               = var.metro
+  operating_system    = "ubuntu_22_04"
+  billing_cycle       = "hourly"
+  user_data           = "#!/bin/bash\ncurl -s https://raw.githubusercontent.com/masters-of-cats/a-new-hope/main/install.sh | bash -s"
+  project_ssh_key_ids = [metal_project_ssh_key.demo_key.id]
+  project_id          = metal_project.liquid_metal_demo.id
+}
+
+# Update the host devices' networking to be Hybrid-Bonded with VLAN attached
+resource "metal_port" "bond0_bmhost" {
+  count    = var.bm_device_count
+  port_id  = [for p in metal_device.bmhost[count.index].ports : p.id if p.name == "bond0"][0]
   layer2   = false
   bonded   = true
   vlan_ids = [metal_vlan.vlan.id]
@@ -223,6 +251,37 @@ resource "null_resource" "setup_hosts" {
       "chmod +x /root/flintlock.sh",
       "VLAN_ID=${metal_vlan.vlan.vxlan} ADDR=${count.index + 3} /root/vlan.sh",
       "VLAN_ID=${metal_vlan.vlan.vxlan} FLINTLOCK=${var.flintlock_version} FIRECRACKER=${var.firecracker_version} /root/flintlock.sh",
+    ]
+  }
+}
+
+# Set up the vlan and pre-reqs for baremetal hosts
+resource "null_resource" "setup_bmhosts" {
+  count = var.bm_device_count
+  connection {
+    type        = "ssh"
+    host        = metal_device.bmhost[count.index].network.0.address
+    user        = "root"
+    port        = 22
+    private_key = file(var.private_key_path)
+  }
+
+  provisioner "file" {
+    source      = "files/vlan.sh"
+    destination = "/root/vlan.sh"
+  }
+
+  provisioner "file" {
+    source      = "files/byoh.sh"
+    destination = "/root/byoh.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /root/vlan.sh",
+      "chmod +x /root/byoh.sh",
+      "VLAN_ID=${metal_vlan.vlan.vxlan} ADDR=${count.index + 13} /root/vlan.sh",
+      "AUTH_KEY=${var.ts_auth_key} /root/byoh.sh",
     ]
   }
 }
