@@ -1,0 +1,8 @@
+{
+  "project_name": "liquid-metal-demo",
+  "org_id": "ORG_ID",
+  "metal_auth_token": "AUTH_TOKEN",
+  "ts_auth_key": "TAILSCALE_KEY",
+  "public_key": "PUBLIC_SSH_KEY",
+  "private_key_path": "/PATH/TO/LOCAL/PRIVATE/KEY"
+}
