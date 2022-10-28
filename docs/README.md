@@ -1,7 +1,7 @@
 # Liquid Metal
 
 > This is the original version of the Equinix build docs. There are now easier
-  to use [terraform modules](terraform/) and [docs](https://weaveworks-liquidmetal.github.io/site/docs/category/tutorial-equinix-platform/).
+  to use [terraform modules](/terraform/) and [docs](https://weaveworks-liquidmetal.github.io/site/docs/category/tutorial-equinix-platform/).
   This folder serves as an archive.
 
 The Liquid Metal project encompasses a group of components which together can
