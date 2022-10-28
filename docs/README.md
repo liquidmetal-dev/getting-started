@@ -1,5 +1,9 @@
 # Liquid Metal
 
+> This is the original version of the Equinix build docs. There are now easier
+  to use [terraform modules](terraform/) and [docs](https://weaveworks-liquidmetal.github.io/site/docs/category/tutorial-equinix-platform/).
+  This folder serves as an archive.
+
 The Liquid Metal project encompasses a group of components which together can
 be used to create and manage Kubernetes Clusters on bare metal.
 
@@ -11,26 +15,6 @@ These components are:
   Kubernetes nodes on the most appropriate bare-metal host.
 - **Flintlock**: A service for creating and managing the lifecycle of MicroVMs
 - **Firecracker**: A tool to create MicroVMs
-
-
-<!--
-To update the TOC, install https://github.com/kubernetes-sigs/mdtoc
-and run: mdtoc -inplace docs/intro.md
--->
-
-<!-- toc -->
-- [Liquid Metal](#liquid-metal)
-  - [Tutorial: getting started](#tutorial-getting-started)
-  - [Terraform an environment on Equinix](#terraform-an-environment-on-equinix)
-    - [Requirements](#requirements)
-    - [Configuration](#configuration)
-    - [Apply](#apply)
-    - [Test](#test)
-    - [Using fl](#using-fl)
-    - [Using Hammertime](#using-hammertime)
-    - [Troubleshoot](#troubleshoot)
-    - [Use](#use)
-<!-- /toc -->
 
 ## Tutorial: getting started
 
