@@ -82,8 +82,6 @@ They will be namespaced under `flintlock`.
 ## Firecracker
 
 Liquid Metal is built around [Firecracker MicroVMs](https://github.com/firecracker-microvm/firecracker).
-We use a [fork](https://github.com/weaveworks-liquidmetal/firecracker/tree/feature/macvtap)
-which is regularly kept aligned with the upstream repo.
 
 Firecracker MicroVMs run as processes which you can inspect, the PID is saved to
 `/var/lib/flintlock/vm/<namespace>/<name>/<uuid>/firecracker.pid`.
@@ -99,7 +97,7 @@ Metrics can be found at `/var/lib/flintlock/vm/<namespace>/<name>/<uuid>/firecra
 
 ## Flintlock
 
-Liquid Metal uses [Flintlock](https://github.com/weaveworks-liquidmetal/flintlock) to manage
+Liquid Metal uses [Flintlock](https://github.com/liquidmetal-dev/flintlock) to manage
 the lifecycle of Firecracker MicroVMs.
 
 If you provisioned your hosts following the instructions in this guide, then

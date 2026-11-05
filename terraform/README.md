@@ -25,5 +25,5 @@ terraform apply
 
 Don't forget to `terraform destroy` when you are done.
 
-[module]: https://registry.terraform.io/modules/weaveworks-liquidmetal/liquidmetal/equinix/latest
+[module]: https://github.com/liquidmetal-dev/terraform-equinix-liquidmetal
 [tailscale]: https://tailscale.com/

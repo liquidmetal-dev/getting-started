@@ -34,6 +34,6 @@ a record for posterity, or in case we need to remember something.
 
 The resources here will be expanding over time. We also :heart: contributions and suggestions.
 
-If you see any issues with the getting started resources please [create a new issue](https://github.com/weaveworks-liquidmetal/getting-started/issues/new/choose).
+If you see any issues with the getting started resources please [create a new issue](https://github.com/liquidmetal-dev/getting-started/issues/new/choose).
 
-[lm-docs]: https://weaveworks-liquidmetal.github.io/site/docs/category/tutorial-equinix-platform/
+[lm-docs]: https://www.liquidmetal.dev/docs/tutorial-equinix/intro

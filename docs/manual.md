@@ -27,11 +27,7 @@ a privileged user.
 
 ## Firecracker
 
-Liquid Metal relies on a feature of firecracker which is not yet released in the
-upstream repo. Therefore we maintain our own fork, and create releases based
-on latest of the upstream project along with the feature we require.
-
-Install the latest feature release from [here](https://github.com/weaveworks-liquidmetal/firecracker/releases).
+Install the latest release from [here](https://github.com/firecracker-microvm/firecracker/releases).
 
 ## Thinpool
 
@@ -40,14 +36,14 @@ To store the layers and snapshots we need to provide a thinpool backed by a blan
 block-device.
 
 > Note: If you do not have a spare block device you can provision a thinpool
-using sparse files and loop devices (see this script [here](https://github.com/weaveworks-liquidmetal/flintlock/blob/main/hack/scripts/devpool.sh)),
+using sparse files and loop devices (see this script [here](https://github.com/liquidmetal-dev/flintlock/blob/main/hack/scripts/devpool.sh)),
 but please be aware that this is not a production-ready setup.
 
-To provision the Direct LVM thinpool, you can run [this script](https://github.com/weaveworks-liquidmetal/flintlock/blob/main/hack/scripts/direct_lvm.sh)
+To provision the Direct LVM thinpool, you can run [this script](https://github.com/liquidmetal-dev/flintlock/blob/main/hack/scripts/direct_lvm.sh)
 on your device:
 
 ```sh
-curl https://raw.githubusercontent.com/weaveworks-liquidmetal/flintlock/main/hack/scripts/direct_lvm.sh > direct_lvm.sh
+curl https://raw.githubusercontent.com/liquidmetal-dev/flintlock/main/hack/scripts/direct_lvm.sh > direct_lvm.sh
 chmod +x direct_lvm.sh
 
 lsblk # discover name of spare block device
@@ -122,14 +118,14 @@ with `journalctl -u containerd`.
 
 ## Flintlock
 
-Install the [latest flintlock release](https://github.com/weaveworksliquidmetal/flintlock/releases)
+Install the [latest flintlock release](https://github.com/liquidmetal-dev/flintlock/releases)
 on the host at `/usr/local/bin/flintlockd`.
 
 We will also be using systemd to run flintlock.
 Create a flintlock service and environment file:
 
 ```bash
-curl https://raw.githubusercontent.com/weaveworks-liquidmetal/flintlock/main/flintlockd.service > /etc/systemd/system/flintlockd.service
+curl https://raw.githubusercontent.com/liquidmetal-dev/flintlock/main/flintlockd.service > /etc/systemd/system/flintlockd.service
 chmod 0664 /etc/systemd/system/flintlockd.service
 ```
 

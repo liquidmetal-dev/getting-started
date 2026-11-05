@@ -1,7 +1,7 @@
 # Bootstrapping Cluster API
 
 Liquid Metal's orchestrator, which will interact with our new host(s) and flintlock
-service(s), is [CAPMVM](https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm).
+service(s), is [CAPMVM](https://github.com/liquidmetal-dev/cluster-api-provider-microvm).
 This works as part of Cluster API, so we need to use both to create our bare-metal cluster.
 
 <!--
@@ -50,7 +50,7 @@ kind create cluster
 
 To add the Cluster API Provider MicroVM, we first need to create a `clusterctl` config file.
 
-Set the version of CAPMVM to that which is [compatible](https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm/blob/main/docs/compatibility.md)
+Set the version of CAPMVM to that which is [compatible](https://github.com/liquidmetal-dev/cluster-api-provider-microvm/blob/main/docs/compatibility.md)
 with the version of Flintlock you provisioned your metal hosts with.
 
 ```bash
@@ -65,7 +65,7 @@ mkdir -p ~/.cluster-api
 cat << EOF >>~/.cluster-api/clusterctl.yaml
 providers:
   - name: "microvm"
-    url: "https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm/releases/$CAPMVM_VERSION/infrastructure-components.yaml"
+    url: "https://github.com/liquidmetal-dev/cluster-api-provider-microvm/releases/$CAPMVM_VERSION/infrastructure-components.yaml"
     type: "InfrastructureProvider"
 EOF
 ```
@@ -85,7 +85,7 @@ We can now initialize the management cluster:
 clusterctl init -i microvm
 ```
 
-> Note: if you do not have access to the [cluster-api-provider-microvm repo](https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm)
+> Note: if you do not have access to the [cluster-api-provider-microvm repo](https://github.com/liquidmetal-dev/cluster-api-provider-microvm)
 you will not be able to install this provider.
 
 ## Next Steps

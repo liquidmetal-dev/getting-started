@@ -9,9 +9,9 @@ follow the ['Step-by-step manual tutorial'](manual.md).
 Each MicroVM host will be provisioned with the following:
 
 - A direct-lvm thinpool
-- [Firecracker](https://github.com/weaveworks-liquidmetal/firecracker/releases) (you must use a release from the feature fork)
+- [Firecracker](https://github.com/firecracker-microvm/firecracker/releases)
 - [Containerd](https://github.com/containerd/containerd/releases)
-- [Flintlock](https://github.com/weaveworks-liquidmetal/flintlock/releases)
+- [Flintlock](https://github.com/liquidmetal-dev/flintlock/releases)
 
 Use the key you assigned earlier to SSH on to your MicroVM host(s):
 
@@ -21,7 +21,7 @@ ssh -i <path to private key> root@<ip> # or use the hostname if you have it set 
 
 Download the Flintlock provisioning tool:
 ```bash
-wget https://raw.githubusercontent.com/weaveworks-liquidmetal/flintlock/main/hack/scripts/provision.sh
+wget https://raw.githubusercontent.com/liquidmetal-dev/flintlock/main/hack/scripts/provision.sh
 chmod +x provision.sh
 ```
 
@@ -49,7 +49,7 @@ address to. In my case this is `bond0.1000` where `1000` is my VLAN id as noted
 in my Equinix dash.
 
 Our Liquid Metal system will use Cluster API Provider MicroVM to connect to the
-Flintlock daemon on our bare-metal hosts. Consult the [compatibility table](https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm/blob/main/docs/compatibility.md)
+Flintlock daemon on our bare-metal hosts. Consult the [compatibility table](https://github.com/liquidmetal-dev/cluster-api-provider-microvm/blob/main/docs/compatibility.md)
 and select the latest Flintlock version from the table. Note the corresponding
 CAPMVM version for later.
 
@@ -65,7 +65,7 @@ Run the tool **as root**:
 ./provision.sh all --disk <disk name> --grpc-address <host ip> --parent-iface <interface>
 ```
 
-> Note: docs for the provision tool can be found [here](https://github.com/weaveworks-liquidmetal/flintlock/blob/provision/hack/scripts/README.md).
+> Note: docs for the provision tool can be found [here](https://github.com/liquidmetal-dev/flintlock/blob/provision/hack/scripts/README.md).
 
 Once the tool has run, the host is ready.
 

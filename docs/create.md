@@ -47,7 +47,7 @@ in the previous steps of the tutorial you will need to edit the `cluster.yaml`
 which will be generated in the next step and add to the static pool hosts list
 in `MicrovmCluster`.
 
-Again, ensure that the version is [compatible](https://github.com/weaveworks-liquidmetal/cluster-api-provider-microvm/blob/main/docs/compatibility.md) with that of Flintlock:
+Again, ensure that the version is [compatible](https://github.com/liquidmetal-dev/cluster-api-provider-microvm/blob/main/docs/compatibility.md) with that of Flintlock:
 
 ```bash
 export CAPMVM_VERSION=<version>
